@@ -1,0 +1,18 @@
+<view class="p-md main">
+  <h1 class="font-bold union-name flex items-center flex-wrap justify-between">
+    <view class="">{{union.name}}</view>
+    <navigator wx:if="{{isAdmin}}" class="" url="/pages/union/edit-union/index?id={{union.id}}">
+      <view class="icon iconfont icon-edit"></view>
+    </navigator>
+  </h1>
+  <view class="mb-md">{{union.description}}</view>
+  <view class="flex items-center">
+    <view class="icon iconfont icon-wechat-fill mr-sm"></view>{{union.phone}}</view>
+  <view class="flex items-center"><view class="icon iconfont icon-mail mr-sm"></view>{{union.email}}</view>
+</view>
+<h2 class="main-section-header">谁在该组织？</h2>
+<view class="main">
+  <view wx:for="{{users}}" wx:key="id">
+    <name user="{{item}}"></name>
+  </view>
+</view>

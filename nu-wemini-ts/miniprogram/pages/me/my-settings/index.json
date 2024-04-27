@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "avatar": "../../../components/avatar/index",
+    "updateMe": "../../../components/updateMe/index"
+  },
+  "navigationBarTitleText": "设置"
+}

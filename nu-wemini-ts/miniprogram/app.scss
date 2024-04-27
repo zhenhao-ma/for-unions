@@ -1,0 +1,314 @@
+/**app.wxss**/
+@import "./static/iconfont/transfonter/stylesheet";
+
+
+/** headings **/
+h1 {
+  font-weight: bolder;
+  // font-size: 42rpx;
+  display: block;
+}
+
+/** variables **/
+$space-sm: 16rpx;
+$space-md: 24rpx;
+$space-lg: 32rpx;
+
+/** color scheme **/
+// https://colorhunt.co/palette/0e21a04d2db79d44c0ec53b0
+$primary-color: #0E21A0;
+$secondary-color: #4D2DB7;
+$warn-color: #9D44C0;
+$error-color: #EC53B0;
+$dark-color: #333333;
+$light-color: #f2f2f2;
+$white-color: #fff;
+
+/** map **/
+$colors: (
+  "primary": $primary-color,
+  "secondary": $secondary-color,
+  "warn": $warn-color,
+  "error": $error-color,
+  "dark": $dark-color,
+  "light": $light-color,
+  "white": $white-color,
+);
+$spacings: (
+  "sm": $space-sm,
+  "md": $space-md,
+  "lg": $space-lg,
+  "auto": "auto"
+);
+
+page, view, button, input, navigator, textarea, picker {
+  box-sizing: border-box;
+  color: $dark-color;
+}
+
+
+
+/** wrapper **/
+page {
+  background-color: $light-color;
+
+  .main {
+    border-radius: 16rpx;
+    background-color: white;
+    margin: $space-md;
+  }
+  .main-section-header {
+    margin: $space-md;
+    font-weight: 800;
+  }
+  .main-action, .form-submit {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: $space-md;
+    button {
+      width: 100%;
+    }
+  }
+  .row {
+    border-bottom: 1px solid $light-color;
+    padding: $space-md 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+/** text **/
+.font-bold {
+  font-weight: 800;
+}
+
+/** color **/
+// background color
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value;
+  }
+  .text-#{$color} {
+    color: $value;
+  }
+  .border-#{$color} {
+    border-color: $value;
+  }
+  button.#{$color} {
+    background-color: $value;
+    color: $white-color;
+  }
+  button.text.#{$color} {
+    background-color: transparent !important;
+    color: $value;
+  }
+}
+// some replacement
+button.light, button.white {
+  color: $dark-color;
+}
+button.text.light, button.text.white {
+  color: $light-color;
+  background-color: transparent !important;
+}
+
+/** align & spacing **/
+// align
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-grow {
+  flex-grow: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.no-shrink {
+  flex-shrink: 0;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+// text align
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+// width
+.w-full {
+  width: 100% !important;
+}
+.h-full {
+  height: 100% !important;
+}
+
+// padding and margin
+@each $size, $value in $spacings {
+  .p-#{$size} {
+    padding: $value;
+  }
+  .px-#{$size} {
+    padding-left: $value;
+    padding-right: $value
+  }
+  .py-#{$size} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+  .pb-#{$size} {
+    padding-bottom: $value;
+  }
+  .pt-#{$size} {
+    padding-top: $value;
+  }
+  .pr-#{$size} {
+    padding-right: $value;
+  }
+  .pl-#{$size} {
+    padding-left: $value;
+  }
+
+  // margin
+  .m-#{$size} {
+    margin: $value;
+  }
+  .mx-#{$size} {
+    margin-left: $value;
+    margin-right: $value
+  }
+  .my-#{$size} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value;
+  }
+  .mt-#{$size} {
+    margin-top: $value;
+  }
+  .mr-#{$size} {
+    margin-right: $value;
+  }
+  .ml-#{$size} {
+    margin-left: $value;
+  }
+}
+
+/** border **/
+.border {
+  border: 1px solid $light-color;
+}
+.border-t {
+  border-top: 1px solid $light-color;
+}
+.border-b {
+  border-bottom: 1px solid $light-color;
+}
+.border-l {
+  border-left: 1px solid $light-color;
+}
+.border-r {
+  border-right: 1px solid $light-color;
+}
+
+/** component: input **/
+// input {}
+
+/** component: button **/
+button {
+  cursor: pointer;
+}
+
+/** form **/
+.form {
+  .form-row {
+    display: flex;
+    align-items: center;
+    padding: $space-md 0;
+    border-bottom: 1px solid $light-color;
+
+    &:last-child {
+      border-bottom: none !important;
+    }
+  
+    .form-prefix {
+      width: 140rpx;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    input {
+      flex-grow: 1;
+    }
+  }
+  .form-row-block {
+    display: block;
+    .form-prefix {
+      display: block;
+      width: 100%;
+      margin-bottom: $space-sm;
+    }
+  }
+}
+
+/** border radius **/
+.rounded-sm {
+  border-radius: 12rpx
+}
+.rounded-md {
+  border-radius: 16rpx
+}
+.rounded-lg {
+  border-radius: 20rpx
+}
+
+/* menu and list item */
+.menu {
+  .list-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $light-color;
+    padding:  $space-sm $space-md;
+    .icon-wrapper {
+      display: inline-block;
+      width: 60rpx;
+    }
+  }
+  .list-item:last-child {
+    border-bottom: none;
+  }
+}
+
+/* icon */
+.iconfont {
+  color: $dark-color;
+}

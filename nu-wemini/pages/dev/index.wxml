@@ -1,0 +1,4 @@
+<!--pages/dev/index.wxml-->
+<view>
+  <button bindtap="getToken">getToken</button>
+</view>

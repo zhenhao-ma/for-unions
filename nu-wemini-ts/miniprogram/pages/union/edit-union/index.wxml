@@ -1,0 +1,4 @@
+<!--pages/me/my-unions/edit-union/index.wxml-->
+<view class="main p-md">
+  <unionEditor wx:if="{{objData}}" union="{{objData}}"></unionEditor>
+</view>

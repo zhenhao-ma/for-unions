@@ -1,0 +1,39 @@
+<view wx:if="{{!isLogin}}" class="px-md main py-md">
+  <view class="text-center">请先登录</view>
+  <view class="main-action">
+    <button class="primary w-full" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button>
+  </view>
+</view>
+<view wx:else class="p-md main">
+  <view class="text-center mb-md">
+    <avatar></avatar>
+  </view>
+  <view class="mb-md text-center">{{me.full_name || "<空白名称>"}}</view>
+  <view class="menu">
+    <navigator class="list-item" url="/pages/me/my-settings/index">
+      <view class="icon-wrapper">
+        <view class="icon iconfont icon-user"></view>
+      </view>
+      编辑我的信息
+    </navigator>
+    <navigator class="list-item" url="/pages/me/my-unions/index">
+      <view class="icon-wrapper">
+        <view class="icon iconfont icon-team"></view>
+      </view>
+      已加入组织
+    </navigator>
+    <navigator class="list-item" url="/pages/me/manage-applies/index">
+      <view class="icon-wrapper">
+        <view class="icon iconfont icon-file-text"></view>
+      </view>
+      管理组织的加入申请
+    </navigator>
+    <navigator class="list-item" url="/pages/me/create-union/index">
+      <view class="icon-wrapper">
+        <view class="icon iconfont icon-plus-square"></view>
+      </view>
+      创建新组织
+    </navigator>
+    <view class="list-item" bind:tap="logout">退出登录</view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "avatar": "../../components/avatar/index"
+  },
+  "navigationBarTitleText": "我的"
+}

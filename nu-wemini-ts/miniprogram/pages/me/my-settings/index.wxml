@@ -1,0 +1,7 @@
+<!--pages/me/my-settings/index.wxml-->
+<view  class="p-md main">
+  <view class="text-center mb-md">
+    <avatar></avatar>
+  </view>
+  <updateMe wx:if="{{me}}" user="{{me}}" class=""></updateMe>
+</view>

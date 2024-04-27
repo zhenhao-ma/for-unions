@@ -1,0 +1,31 @@
+<view class="form">
+    <view class="form-row form-row-block border-b py-md">
+      <view class="form-prefix">
+          组织名称
+      </view>
+      <input model:value="{{name}}" placeholder="组织名称，例如(大学)(校友会区域)(校友会)" />
+    </view>
+    <view class="form-row form-row-block border-b py-md">
+      <view class="form-prefix">
+          一句话介绍
+      </view>
+      <input model:value="{{description}}" placeholder="可以包含任何关于本组织的信息" />
+    </view>
+    <view class="form-row form-row-block border-b py-md">
+      <view class="form-prefix">
+          联系邮箱
+      </view>
+      <input model:value="{{email}}" placeholder="所有消息可能会通过邮箱进行通知" />
+    </view>
+    <view class="form-row form-row-block py-md">
+      <view class="form-prefix">
+          联系手机
+      </view>
+      <input model:value="{{phone}}" placeholder="手机号建议与微信同号" />
+    </view>
+  </view>
+  <view class="form-submit">
+    <button bind:tap="onSave" class="primary ">
+      创建组织
+    </button>
+  </view>

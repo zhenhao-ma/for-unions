@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+
+  redis:
+    ports:
+      - "6379:6379"
+    env_file:
+      - dev.env
+
+  backend:
+    env_file:
+      - dev.env
+
+  mongo:
+    env_file:
+      - dev.env
+    ports:
+      - "27017:27017"
+
+  strapi:
+    env_file:
+      - dev.env
+    volumes:
+      - /Users/mazhenhao/Documents/localhost_file_storage/names-union-strapi:/srv/app
+      - /Users/mazhenhao/Documents/localhost_file_storage/names-union-strapi-uploads:/public/uploads
+    ports:
+      - "1337:1337"
+
+  strapi_mysql:
+    env_file:
+      - dev.env
+    ports:
+      - "3306:3306"
+
+volumes:
+  redis:

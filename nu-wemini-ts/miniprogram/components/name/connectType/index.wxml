@@ -1,0 +1,2 @@
+<view class="connect-type rounded-sm p-sm text-white {{cls}}">
+{{ label }}</view>

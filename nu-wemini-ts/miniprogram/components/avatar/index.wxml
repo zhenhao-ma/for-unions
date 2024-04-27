@@ -1,0 +1,6 @@
+<image
+wx:if="{{!!src}}"
+  class="img"
+  mode="aspectFill" src="{{src}}"
+></image>
+<view wx:else class="img"></view>

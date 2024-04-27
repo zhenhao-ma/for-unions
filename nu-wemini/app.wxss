@@ -1,0 +1,22 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.t-tab-bar-item__content.t-is-checked {
+  color: #d97706 !important;
+}
+
+.t-tabs .t-is-active >.t-tabs__item-inner {
+  color: #d97706 ;
+}
+
+.t-tabs__track {
+  background-color: #d97706 !important;
+}

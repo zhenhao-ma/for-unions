@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "connect-type": "./connectType"
+  }
+}

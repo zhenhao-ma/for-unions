@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/dev/index",
+    "pages/me/index",
+    "pages/logs/logs",
+    "pages/me/create-union/index",
+    "pages/me/my-unions/index",
+    "pages/union/index",
+    "pages/me/manage-applies/index",
+    "pages/me/my-settings/index",
+    "pages/me/manage-applies/apply/index",
+    "pages/union/edit-union/index"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/dev/index",
+        "text": "Dev"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "找到组织了",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+
+  rag:
+    image: rag:latest
+    restart: unless-stopped
+    build:
+      context: ./rag
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /mnt/rag_instance:/instance

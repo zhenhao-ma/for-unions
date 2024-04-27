@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "name": "../../components/name"
+  },
+  "navigationBarTitleText": "组织"
+}

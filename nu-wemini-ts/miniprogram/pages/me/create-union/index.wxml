@@ -1,0 +1,3 @@
+<view class="p-md main">
+  <unionEditor></unionEditor>
+</view>

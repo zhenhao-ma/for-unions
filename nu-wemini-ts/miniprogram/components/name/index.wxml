@@ -1,0 +1,8 @@
+<view class="name border p-md rounded-md mb-md rounded hover:shadow">
+  <view class="name flex items-center"><view class="icon iconfont icon-user mr-sm"></view>{{user.full_name || "<空白用户名>"}}</view>
+  <view class="">{{user.tags.join(",")}}</view>
+  <view wx:if="{{user.description}}" class="mb-md">{{user.description}}</view>
+  <view class="text-right">
+    <connect-type user="{{user}}"></connect-type>
+  </view>
+</view>

@@ -1,0 +1,44 @@
+<view class="form">
+  <view class="form-row">
+    <view class="form-prefix">
+      名字
+    </view>
+    <input model:value="{{full_name}}" placeholder="你的名字" />
+  </view>
+  <view class="form-row">
+    <view class="form-prefix">
+      邮箱
+    </view>
+    <input model:value="{{email}}" placeholder="...@gmail.com" />
+  </view>
+  <view class="form-row">
+    <view class="form-prefix">
+      手机
+    </view>
+    <text class="">{{phone}}</text>
+    <!-- <input model:value="{{phone}}" placeholder="手机" /> -->
+  </view>
+  <view class="form-row">
+    <view class="form-prefix">
+      国家
+    </view>
+    <view class="flex-grow">
+      <picker bindchange="pickCountry" value="{{0}}" range="{{countries}}" range-key="name">
+        <view class="picker">
+          {{countryOption.name}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="form-row form-row-block">
+    <view class="form-prefix">
+      描述一下你自己
+    </view>
+    <textarea model:value="{{description}}" placeholder="你的描述可以尽可能详细，可以关于工作，生活，爱好，兴趣，甚至感情状况，这会极大的提升别人发现你的机会。" />
+  </view>
+</view>
+<view class="form-submit">
+  <button bind:tap="onSave" class="primary w-full ">
+    保存
+  </button>
+</view>

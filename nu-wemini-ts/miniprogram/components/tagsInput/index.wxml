@@ -1,0 +1,9 @@
+<view class="tags-wrapper">
+  <view class="tag flex items-center mr-sm p-md mb-sm bg-light" wx:for="{{tags}}" wx:key="{{index}}">
+  {{item}}<view class="ml-md">x</view>
+  </view>
+  <view class="flex items-center w-full">
+    <input bind:focus="onInputFocus" bind:blur="onInputBlur" placeholder="增加标签" class="add-tag flex-grow" model:value="{{newTag}}" />
+  <button bind:tap="onInputBlur"  class="confirm-add-tag no-shrink" wx:if="{{focused}}">新增标签</button>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "unionEditor": "../../../components/unionEditor/index"
+  },
+  "navigationBarTitleText": "编辑组织"
+}

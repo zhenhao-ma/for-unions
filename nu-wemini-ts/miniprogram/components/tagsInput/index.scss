@@ -1,0 +1,24 @@
+@import "../../app.scss";
+
+.tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tag {
+  font-size: 24rpx;
+  padding: 4rpx 8rpx;
+  background-color: rgba($primary-color, .1);
+  color: $primary-color;
+  line-break: auto;
+  word-break: break-all;
+}
+input.add-tag {
+  min-width: 100rpx;
+  font-size: 24rpx;
+}
+button.confirm-add-tag {
+  font-size: 24rpx;
+  width: auto;
+  padding: 4rpx 8rpx;
+}

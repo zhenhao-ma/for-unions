@@ -1,0 +1,8 @@
+<view>
+    <input model:value="{{phone}}" />
+    <button bind:tap="getToken">创建并登录</button>
+    <button bind:tap="generateRandomApplies">生成随机申请</button>
+    <navigator url="/pages/me/create-union/index">创建校友会</navigator>
+    <navigator url="/pages/me/my-unions/index">我的校友会</navigator>
+    <view class="icon iconfont icon-slack"> </view>
+</view>

@@ -1,0 +1,26 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+    <h1>WeRag Flask</h1>
+    <ul>
+        {% if g.user %}
+        <li><a href="{{ url_for('chat.chat') }}">Ask Rag</a></li>
+        <li><a href="{{ url_for('content.edit') }}">Edit Rag</a></li>
+        <li class="user-name">User: {{ g.user['username'] }}</li>
+        {% else %}
+        <li><a href="{{ url_for('auth.login') }}">Log In</a>
+            {% endif %}
+    </ul>
+</nav>
+<main>
+    <div class="header">
+        {% block header %}{% endblock %}
+    </div>
+    {% for message in get_flashed_messages() %}
+    <div class="flash">Flashed: {{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+    {% for message in get_flashed_messages() %}
+    {% endfor %}
+</main>

@@ -1,0 +1,8 @@
+<navigator url="/pages/union/index?id={{union.id}}">
+  <view class="union border p-md rounded-md mb-md rounded hover:shadow">
+  <view class="font-bold union-name">{{union.name}}</view>
+  <view class="mb-md border-b pb-md">{{union.description}}</view>
+  <view>Phone: {{union.phone}}</view>
+  <view>Email: {{union.email}}</view>
+  </view>
+</navigator>

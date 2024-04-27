@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit your RAG content{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" class="module">
+      <label for="contents">All texts will be store in WeRag chroma db</label>
+      <textarea rows="30" name="contents" id="contents">{{ contents }}</textarea>
+      <label for="urls">All urls will be load into WeRag chroma db, with depth (3)</label>
+      <textarea rows="30" name="urls" id="urls" >{{ urls }}</textarea>
+      <div class="buttons-row form__submit-buttons">
+          <button type="submit">Save</button>
+      </div>
+  </form>
+{% endblock %}

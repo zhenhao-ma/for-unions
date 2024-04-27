@@ -1,0 +1,4 @@
+<!--components/loader/index.wxml-->
+<view class="loader-container">
+  <view class="loader"></view>
+</view>

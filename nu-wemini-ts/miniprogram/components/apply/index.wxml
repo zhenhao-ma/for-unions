@@ -1,0 +1,5 @@
+<!--components/apply/index.wxml-->
+<view class="">
+  <view>{{apply.applicant_name ?? "<空白名称>"}}</view>
+  <view>{{apply.union_name}}</view>
+</view>

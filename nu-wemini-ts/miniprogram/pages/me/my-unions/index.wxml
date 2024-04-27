@@ -1,0 +1,5 @@
+<view class="p-md">
+  <view wx:for="{{list}}" wx:key="id">
+    <union union="{{item}}"></union>
+  </view>
+</view>

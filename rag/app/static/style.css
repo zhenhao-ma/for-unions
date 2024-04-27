@@ -1,0 +1,77 @@
+/* Gray: https://www.colorhexa.com/a6a6a6 */
+
+/* Global and common elements */
+* { box-sizing:border-box; font-family: sans-serif; font-size: 14px; }
+html { font-family: sans-serif; background: #f4f4f4; padding: 4rem; overflow-y: auto; }
+body { max-width: 80%; margin: 0 auto; background: white; border-radius: 16px; overflow:hidden; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; }
+a { color: #7e7e7e; text-decoration: none; cursor: pointer; pointer-events: auto;}
+a:hover { text-decoration: underline; }
+*:focus {
+    outline: none;
+}
+
+/* Nav */
+nav { display: flex; align-items: center; border-bottom: 1px solid #cdcdcd;  padding: 1rem; }
+nav h1 { font-size: 24px; flex: auto; margin: 0; color: #1c1c1c; font-weight: 800; }
+nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
+nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
+nav .user-name { color: #7e7e7e; font-style: italic; }
+nav ul li a, nav ul li { display: block; margin-left: 0.5rem; cursor: pointer; }
+nav ul .user-name { padding-left: 0.5rem; margin-left: 0.5rem; border-left: 1px solid #cdcdcd; cursor: pointer; }
+
+/* Flash */
+.flash { margin: 1rem 0; padding: 0.5rem; border-radius: 8px; color: #1c1c1c; background: #f4f4f4; border: 1px solid #f4f4f4; }
+
+/* Input */
+input, input[type=text], input[type=password], input[type=number], textarea {
+    border: 1px solid #c3c3c3;
+    padding: 0.5rem 1rem;
+    color: #1c1c1c;
+    border-radius: 8px;
+}
+input:focus, textarea:focus, input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
+    border: 1px solid #1c1c1c;
+}
+textarea { width: 100%; white-space: pre-wrap; }
+
+/* Button */
+input[type=button], input[type=submit], input[type=reset], button {
+  background-color: #1c1c1c;
+  border: 1px solid #1c1c1c;
+  color: #f4f4f4;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+input[type=button].outline, input[type=submit].outline, input[type=reset].outline, button.outline {
+    border: 1px solid #1c1c1c;
+    color: #1c1c1c;
+    background-color: transparent;
+}
+
+/* Main */
+main h1, main h2 { font-weight: 600; font-size: 16px !important; }
+main { padding: 0 1rem 1rem; }
+main > .header { display: flex; align-items: center; }
+main > .header h1, main > .header h2 { margin-right: auto; }
+main > .header a { margin-left: 0.5rem; }
+
+/* Module Global */
+.module textarea { margin-top: 1rem; }
+.module input#question {width: 500px !important; }
+.module .question-input-row { display: flex; align-items: center; margin: 1rem 0; }
+.module .question-input-row button { margin-left: 0.5rem; }
+.buttons-row { display: flex; align-items: center; justify-content: flex-end;  }
+.buttons-row button { margin-left: 1rem; }
+.buttons-row__text button, .buttons-row__text input[type=button], .buttons-row__text input[type=submit], .buttons-row__text input[type=reset] { padding: 0; background: none; color: inherit; border: none; }
+.buttons-row__text button:hover, .buttons-row__text input[type=button]:hover, .buttons-row__text input[type=submit]:hover, .buttons-row__text input[type=reset]:hover { text-decoration: underline; }
+.buttons-row button.light:not(:hover) { color: #7e7e7e; }
+.form__submit-buttons {
+    display: flex;
+    margin-top: 2rem;
+     justify-content: flex-end;
+}
+.module .empty-placeholder { margin: 1rem 0; font-weight: 600; text-decoration: underline; }
+
+

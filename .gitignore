@@ -62,4 +62,5 @@ qdrant/
 */traefik/certs/*
 
 *node_modules/*
+nu-wemini-ts/node_modules
 

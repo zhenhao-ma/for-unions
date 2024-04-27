@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "union": "../../../components/union/index"
+  },
+  "navigationBarTitleText": "已加入的组织"
+}

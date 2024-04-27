@@ -1,0 +1,10 @@
+uvicorn[standard]==0.20.0
+gunicorn==20.1.0
+fastapi[all]==0.102.0
+pydantic==2.3.0
+pymongo==4.5.0
+redis==5.0.0
+python-jose==3.1.0
+passlib==1.7.2
+requests==2.31.0
+pycryptodome==3.18.0

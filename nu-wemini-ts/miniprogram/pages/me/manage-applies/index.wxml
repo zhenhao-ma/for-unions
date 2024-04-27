@@ -1,0 +1,6 @@
+<!--pages/me/manage-applies/index.wxml-->
+<view class="main p-md">
+  <view class="row" wx:for="{{list}}" wx:key="id">
+    <apply apply="{{item}}"></apply>
+  </view>
+</view>
