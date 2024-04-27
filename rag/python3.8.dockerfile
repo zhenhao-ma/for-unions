@@ -1,8 +1,6 @@
-# dockerfile source:
-# base docker file ref: https://github.com/tiangolo/uwsgi-nginx-flask-docker/blob/master/docker-images/python3.10.dockerfile
-# chroma bug issue ref: https://stackoverflow.com/questions/76958817/streamlit-your-system-has-an-unsupported-version-of-sqlite3-chroma-requires-sq
+FROM python:3.8-bullseye
 
-FROM python:3.11.5-bookworm
+LABEL maintainer="Sebastian Ramirez <tiangolo@gmail.com>"
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -12,7 +10,7 @@ COPY install-nginx-debian.sh /
 RUN bash /install-nginx-debian.sh
 
 # Install requirements
-COPY uwsgi.requirements.txt /tmp/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 EXPOSE 80
@@ -72,50 +70,6 @@ ENTRYPOINT ["/entrypoint.sh"]
 COPY ./app /app
 WORKDIR /app
 
-# extending flask module from here, see: https://github.com/tiangolo/uwsgi-nginx-flask-docker/blob/master/docker-images/python3.11.dockerfile
-
-# Install requirements
-COPY flask.requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt
-
-
-# URL under which static (not modified by Python) files will be requested
-# They will be served by Nginx directly, without being handled by uWSGI
-ENV STATIC_URL /static
-# Absolute path in where the static files wil be
-ENV STATIC_PATH /app/static
-
-# If STATIC_INDEX is 1, serve / with /static/index.html directly (or the static URL configured)
-# ENV STATIC_INDEX 1
-ENV STATIC_INDEX 0
-
-# Add demo app
-COPY ./app /app
-WORKDIR /app
-
-# Make /app/* available to be imported by Python globally to better support several use cases like Alembic migrations.
-ENV PYTHONPATH=/app
-
-# Move the base entrypoint to reuse it
-RUN mv /entrypoint.sh /uwsgi-nginx-entrypoint.sh
-# Copy the entrypoint that will generate Nginx additional configs
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
-
-#
-#
-# Self docker content comes after here:
-#
-#
-COPY ./requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY . /app
-
-# Run the start script provided by the parent image tiangolo/uwsgi-nginx.
-# It will check for an /app/prestart.sh script (e.g. for migrations)
+# Run the start script, it will check for an /app/prestart.sh script (e.g. for migrations)
 # And then will start Supervisor, which in turn will start Nginx and uWSGI
 CMD ["/start.sh"]
