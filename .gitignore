@@ -60,3 +60,6 @@ qdrant/
 **.pyc.*
 */traefik/certs
 */traefik/certs/*
+
+*node_modules/*
+
