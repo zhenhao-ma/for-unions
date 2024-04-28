@@ -1,3 +1,10 @@
+# required due to chromadb versioning
+# see: https://docs.trychroma.com/troubleshooting#sqlite
+__import__('pysqlite3')
+import sys
+
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import os
 from typing import List
 from typing import Optional
@@ -43,7 +50,6 @@ def split_documents(documents: List[Document]) -> List[Document]:
     final_docs = []
     for doc in documents:
         sp_texts = split_large_text(doc.page_content, max_tokens=max_chunk_size)
-        print("sp_texts: ", len(sp_texts))
         final_docs += [Document(page_content=d) for d in sp_texts]
     return final_docs
 
@@ -86,16 +92,17 @@ def save_urls(werag, *, urls: List[str], user: str,
 
     werag.save_documents(user=user, documents=split_docs, content_type=content_type)
 
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 def get_werag(app):
+    from app.llm import get_embedding
+
     folder = os.path.join(app.instance_path, "werag")
 
     return WeRag(
         persist_directory=folder,
         collection_name="werag",
-        chunk_size=6000, # to ensure the strings of user_content does not split. so this can be larger than the variable max_chunk_size
+        chunk_size=6000,
+        embedding_function=get_embedding(),
+        # to ensure the strings of user_content does not split. so this can be larger than the variable max_chunk_size
         chunk_overlap=chunk_overlap
     )
