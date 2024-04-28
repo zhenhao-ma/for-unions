@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 from flask import (
-    redirect, url_for, request, abort
+    redirect, url_for, request, abort, g
 )
 from wechatpy.exceptions import (
     InvalidSignatureException,
@@ -10,7 +10,7 @@ from wechatpy.exceptions import (
 )
 from wechatpy.utils import check_signature
 
-from . import db, rag
+from . import db, rag, llm
 from .view import auth, content, chat
 
 
@@ -63,13 +63,25 @@ def create_app(test_config=None):
     WECHAT_APPID = app.config['WECHAT_APPID']
 
     # wechat api
-    @app.route("/wechat", methods=["GET", "POST"])
+    @app.route("/wechat/", methods=["GET", "POST"])
     def wechat():
         signature = request.args.get("signature", "")
         timestamp = request.args.get("timestamp", "")
         nonce = request.args.get("nonce", "")
         encrypt_type = request.args.get("encrypt_type", "raw")
         msg_signature = request.args.get("msg_signature", "")
+
+        prompt_template = """
+        ### [INST] 
+        Instruction: """ + app.config['PROMPT_INSTRUCTION'] + f"""\n{g.user['contents']}\n""" + """
+        {context}
+
+        ### QUESTION:
+        {question} 
+
+        [/INST]
+        """
+
         try:
             check_signature(WECHAT_TOKEN, signature, timestamp, nonce)
         except InvalidSignatureException:
@@ -81,7 +93,8 @@ def create_app(test_config=None):
         # POST request
         if encrypt_type == "raw":
             # plaintext mode
-            return app.config['rag'].response_wechat_xml(request.data)
+            return app.config['rag'].response_wechat_xml(request.data, llm=llm.get_llm(), user=str(g.user['id']),
+                                                         prompt_template=prompt_template)
         else:
             # encryption mode
             from wechatpy.crypto import WeChatCrypto
@@ -92,7 +105,9 @@ def create_app(test_config=None):
             except (InvalidSignatureException, InvalidAppIdException):
                 abort(403)
             else:
-                return crypto.encrypt_message(app.config['rag'].response_wechat_xml(msg), nonce, timestamp)
+                return crypto.encrypt_message(
+                    app.config['rag'].response_wechat_xml(msg, llm=llm.get_llm(), user=str(g.user['id']),
+                                                          prompt_template=prompt_template), nonce, timestamp)
 
     return app
 
