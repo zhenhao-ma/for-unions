@@ -11,10 +11,10 @@ def get_llm():
                            )
 
 
-def get_embedding() -> AzureOpenAIEmbeddings:
+def get_embedding(config: dict) -> AzureOpenAIEmbeddings:
     return AzureOpenAIEmbeddings(
-        azure_deployment=current_app.config["AZURE_EMBEDDING"],
-        azure_endpoint=current_app.config['AZURE_GPT35_MODEL_API_BASE'],
-        api_version=current_app.config['AZURE_API_VERSION'],
-        api_key=current_app.config['AZURE_GPT35_MODEL_API_BASE']
+        azure_deployment=config["AZURE_EMBEDDING"],
+        azure_endpoint=config['AZURE_GPT35_MODEL_API_BASE'],
+        api_version=config['AZURE_API_VERSION'],
+        api_key=config['AZURE_GPT35_MODEL_API_BASE']
     )

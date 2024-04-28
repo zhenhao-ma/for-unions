@@ -102,7 +102,7 @@ def get_werag(app):
         persist_directory=folder,
         collection_name="werag",
         chunk_size=6000,
-        embedding_function=get_embedding(),
+        embedding_function=get_embedding(app.config),
         # to ensure the strings of user_content does not split. so this can be larger than the variable max_chunk_size
         chunk_overlap=chunk_overlap
     )
