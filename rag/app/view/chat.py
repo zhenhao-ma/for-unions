@@ -5,7 +5,6 @@ from flask import g
 from langchain.chains import LLMChain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
-
 from app.utils import login_required
 
 bp = Blueprint('chat', __name__, url_prefix='/chat')
@@ -15,15 +14,14 @@ bp = Blueprint('chat', __name__, url_prefix='/chat')
 @login_required
 def chat():
     if request.method == "POST":
-        from app.my_llm import get_llm
+        from app.llm import get_llm
         llm = get_llm()
 
         question = request.form["question"]
 
         prompt_template = """
         ### [INST] 
-        Instruction: """ + current_app.config['PROMPT_INSTRUCTION'] + """
-        
+        Instruction: """ + current_app.config['PROMPT_INSTRUCTION'] + f"""\n{g.user['contents']}\n""" + """
         {context}
         
         ### QUESTION:
@@ -43,7 +41,7 @@ def chat():
         rag_chain = (
                 {"context": current_app.config['rag'].as_retriever(user=str(g.user['id']),
                                                                    search_type="similarity_score_threshold",
-                                                                   score_threshold=0.7),
+                                                                   score_threshold=0.1),
                  "question": RunnablePassthrough()}
                 | llm_chain
         )

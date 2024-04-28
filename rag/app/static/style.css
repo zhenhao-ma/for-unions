@@ -60,6 +60,7 @@ main > .header a { margin-left: 0.5rem; }
 /* Module Global */
 .module textarea { margin-top: 1rem; }
 .module input#question {width: 500px !important; }
+.module #response { margin-bottom: 1rem; }
 .module .question-input-row { display: flex; align-items: center; margin: 1rem 0; }
 .module .question-input-row button { margin-left: 0.5rem; }
 .buttons-row { display: flex; align-items: center; justify-content: flex-end;  }
@@ -73,5 +74,6 @@ main > .header a { margin-left: 0.5rem; }
      justify-content: flex-end;
 }
 .module .empty-placeholder { margin: 1rem 0; font-weight: 600; text-decoration: underline; }
+
 
 

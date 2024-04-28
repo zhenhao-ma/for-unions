@@ -4,9 +4,8 @@
 # Ref: https://github.com/nginxinc/docker-nginx/blob/fef51235521d1cdf8b05d8cb1378a526d2abf421/mainline/debian/Dockerfile
 
 # Standard set up Nginx
-export NGINX_VERSION=1.23.2
+export NGINX_VERSION=1.25.1
 export NJS_VERSION=0.7.7
-# export PKG_RELEASE=1~bullseye
 export PKG_RELEASE=1~bookworm
 
 set -x \
@@ -26,11 +25,11 @@ set -x \
     apt-get remove --purge --auto-remove -y gnupg1 && rm -rf /var/lib/apt/lists/* \
     && dpkgArch="$(dpkg --print-architecture)" \
     && nginxPackages=" \
-        nginx=${NGINX_VERSION}-${PKG_RELEASE} \
-        nginx-module-xslt=${NGINX_VERSION}-${PKG_RELEASE} \
-        nginx-module-geoip=${NGINX_VERSION}-${PKG_RELEASE} \
-        nginx-module-image-filter=${NGINX_VERSION}-${PKG_RELEASE} \
-        nginx-module-njs=${NGINX_VERSION}+${NJS_VERSION}-${PKG_RELEASE} \
+        nginx=1.25.1-${PKG_RELEASE} \
+        nginx-module-xslt=1.25.1-${PKG_RELEASE} \
+        nginx-module-geoip=1.25.1-${PKG_RELEASE} \
+        nginx-module-image-filter=1.25.1-${PKG_RELEASE} \
+        nginx-module-njs=1.25.1+${NJS_VERSION}-${PKG_RELEASE} \
     " \
     && case "$dpkgArch" in \
         amd64|arm64) \
