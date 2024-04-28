@@ -93,7 +93,7 @@ def create_app(test_config=None):
         # POST request
         if encrypt_type == "raw":
             # plaintext mode
-            return app.config['rag'].response_wechat_xml(request.data, llm=llm.get_llm(), user=str(g.user['id']),
+            return app.config['rag'].response_wechat_xml(request.data, llm=llm.get_llm(), user=str(1),
                                                          prompt_template=prompt_template)
         else:
             # encryption mode
@@ -106,7 +106,7 @@ def create_app(test_config=None):
                 abort(403)
             else:
                 return crypto.encrypt_message(
-                    app.config['rag'].response_wechat_xml(msg, llm=llm.get_llm(), user=str(g.user['id']),
+                    app.config['rag'].response_wechat_xml(msg, llm=llm.get_llm(), user=str(1),
                                                           prompt_template=prompt_template), nonce, timestamp)
 
     return app
