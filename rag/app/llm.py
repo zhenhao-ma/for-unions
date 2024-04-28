@@ -16,5 +16,5 @@ def get_embedding(config: dict) -> AzureOpenAIEmbeddings:
         azure_deployment=config["AZURE_EMBEDDING"],
         azure_endpoint=config['AZURE_GPT35_MODEL_API_BASE'],
         api_version=config['AZURE_API_VERSION'],
-        api_key=config['AZURE_GPT35_MODEL_API_BASE']
+        api_key=config['AZURE_GPT35_MODEL_API_TOKEN']
     )
