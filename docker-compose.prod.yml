@@ -10,6 +10,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    # volumes:
-      # - /mnt/rag_instance:/instance
+    volumes:
+      - /mnt/rag_instance:/instance
       # - /mnt/rag_instance:/instance
