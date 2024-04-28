@@ -65,6 +65,12 @@ def create_app(test_config=None):
     # wechat api
     @app.route("/wechat/", methods=["GET", "POST"])
     def wechat():
+
+        first_user = user = db.get_db().execute(
+            'SELECT * FROM user WHERE id = ?', ("1",)
+        ).fetchone()
+
+
         signature = request.args.get("signature", "")
         timestamp = request.args.get("timestamp", "")
         nonce = request.args.get("nonce", "")
@@ -73,7 +79,7 @@ def create_app(test_config=None):
 
         prompt_template = """
         ### [INST] 
-        Instruction: """ + app.config['PROMPT_INSTRUCTION'] + f"""\n{g.user['contents']}\n""" + """
+        Instruction: """ + app.config['PROMPT_INSTRUCTION'] + f"""\n{first_user['contents']}\n""" + """
         {context}
 
         ### QUESTION:
@@ -93,7 +99,7 @@ def create_app(test_config=None):
         # POST request
         if encrypt_type == "raw":
             # plaintext mode
-            return app.config['rag'].response_wechat_xml(request.data, llm=llm.get_llm(), user=str(1),
+            return app.config['rag'].response_wechat_xml(request.data, llm=llm.get_llm(), user=str(first_user['id']),
                                                          prompt_template=prompt_template)
         else:
             # encryption mode
