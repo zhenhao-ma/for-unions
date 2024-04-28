@@ -20,4 +20,6 @@ COPY ./requirements.txt /app/requirements.txt
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r /app/requirements.txt
 
 COPY ./app /app
+# Copy nginx conf, see base dockerfile's entrypoint.sh
+COPY ./nginx.conf /app/nginx.conf
 # CMD ["bash"]
