@@ -86,6 +86,9 @@ def save_urls(werag, *, urls: List[str], user: str,
 
     werag.save_documents(user=user, documents=split_docs, content_type=content_type)
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 def get_werag(app):
     folder = os.path.join(app.instance_path, "werag")
