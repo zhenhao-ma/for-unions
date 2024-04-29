@@ -2,16 +2,11 @@ import os
 
 from flask import Flask
 from flask import (
-    redirect, url_for, request, abort, g
+    redirect, url_for
 )
-from wechatpy.exceptions import (
-    InvalidSignatureException,
-    InvalidAppIdException,
-)
-from wechatpy.utils import check_signature
 
 from . import db, rag, llm
-from .view import auth, content, chat
+from .view import auth, content, chat, wechat
 
 
 def create_app(test_config=None):
@@ -51,69 +46,12 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
     app.register_blueprint(content.bp)
     app.register_blueprint(chat.bp)
+    app.register_blueprint(wechat.bp)
 
     # home
     @app.route('/')
     def index():
         return redirect(url_for('content.edit'))
-
-    # set token or get from environments
-    WECHAT_TOKEN = app.config['WECHAT_TOKEN']
-    WECHAT_AES_KEY = app.config['WECHAT_AES_KEY']
-    WECHAT_APPID = app.config['WECHAT_APPID']
-
-    # wechat api
-    @app.route("/wechat/", methods=["GET", "POST"])
-    def wechat():
-
-        first_user = user = db.get_db().execute(
-            'SELECT * FROM user WHERE id = ?', ("1",)
-        ).fetchone()
-
-
-        signature = request.args.get("signature", "")
-        timestamp = request.args.get("timestamp", "")
-        nonce = request.args.get("nonce", "")
-        encrypt_type = request.args.get("encrypt_type", "raw")
-        msg_signature = request.args.get("msg_signature", "")
-
-        prompt_template = """
-        ### [INST] 
-        Instruction: """ + app.config['PROMPT_INSTRUCTION'] + f"""\n{first_user['contents']}\n""" + """
-        {context}
-
-        ### QUESTION:
-        {question} 
-
-        [/INST]
-        """
-
-        try:
-            check_signature(WECHAT_TOKEN, signature, timestamp, nonce)
-        except InvalidSignatureException:
-            abort(403)
-        if request.method == "GET":
-            echo_str = request.args.get("echostr", "")
-            return echo_str
-
-        # POST request
-        if encrypt_type == "raw":
-            # plaintext mode
-            return app.config['rag'].response_wechat_xml(message=request.data, llm=llm.get_llm(), user=str(first_user['id']),
-                                                         prompt_template=prompt_template)
-        else:
-            # encryption mode
-            from wechatpy.crypto import WeChatCrypto
-
-            crypto = WeChatCrypto(WECHAT_TOKEN, WECHAT_AES_KEY, WECHAT_APPID)
-            try:
-                msg = crypto.decrypt_message(request.data, msg_signature, timestamp, nonce)
-            except (InvalidSignatureException, InvalidAppIdException):
-                abort(403)
-            else:
-                return crypto.encrypt_message(
-                    app.config['rag'].response_wechat_xml(message=msg, llm=llm.get_llm(), user=str(1),
-                                                          prompt_template=prompt_template), nonce, timestamp)
 
     return app
 
