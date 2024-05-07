@@ -101,8 +101,10 @@ def get_werag(app):
     return WeRag(
         persist_directory=folder,
         collection_name="werag",
-        chunk_size=6000,
+        chunk_size=1000,
         embedding_function=get_embedding(app.config),
         # to ensure the strings of user_content does not split. so this can be larger than the variable max_chunk_size
-        chunk_overlap=chunk_overlap
+        chunk_overlap=chunk_overlap,
+        context_size=1500,
+        question_size=1000
     )
