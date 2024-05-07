@@ -7,6 +7,9 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyuwsgi
 COPY ./requirements.txt /app/requirements.txt
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r /app/requirements.txt
 
+COPY ./requirements.extended.txt /app/requirements.extended.txt
+RUN pip install -r /app/requirements.extended.txt
+
 COPY ./app /app
 
 COPY ./wsgi.py /
